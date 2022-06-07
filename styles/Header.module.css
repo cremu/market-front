@@ -1,0 +1,108 @@
+/** HELPER CLASS **/
+.show {
+  display: block !important;
+}
+
+/** HEADER CONTAINER **/
+.header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+
+  max-width: 1440px;
+  font-size: 1.1rem;
+  border-bottom: 1px solid var(--solitude-grey);
+
+  padding: 8px 20px;
+  margin: 0px auto;
+}
+
+/** LOGO (LEFT SECTION) **/
+.leftWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.mobileMenuButton {
+  display: none;
+  background-color: inherit;
+  border: none;
+}
+
+/** MENU (MIDDLE SECTION) **/
+.menuWrapper {
+  flex-grow: 2;
+  margin: auto 0px auto 16px;
+}
+.navMenu {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.navList {
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  list-style-type: none;
+}
+
+/** PROFILE (RIGHT SECTION) **/
+.profileWrapper {
+  margin: auto 0px auto auto;
+}
+.largeButton {
+  padding-top: 3px !important;
+  padding-bottom: 3px !important;
+}
+a.largeButton + a.largeButton {
+  margin-left: 6px;
+}
+
+/** MEDIA QUERIES **/
+@media only screen and (max-width: 1020px) {
+  .header {
+    flex-direction: column;
+  }
+  .leftWrapper {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .mobileMenuButton {
+    display: block;
+  }
+  .menuWrapper {
+    display: none;
+    margin-left: 0px;
+  }
+  .navMenu {
+    display: flex;
+    flex-direction: column;
+  }
+  .navList {
+    width: 100%;
+    flex-direction: column;
+  }
+  .profileWrapper {
+    display: none;
+    margin-left: 0px;
+  }
+  .largeButton {
+    width: 100%;
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    padding: 12px 0px !important;
+  }
+  a.largeButton + a.largeButton {
+    margin-top: 0px;
+    margin-left: 0px;
+  }
+}

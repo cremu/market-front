@@ -1,0 +1,43 @@
+/** MENU ITEM **/
+.listItem {
+  position: relative;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.listItem:hover {
+  background-color: var(--solitude-grey-clear);
+}
+.listItem:hover .hasSubmenu {
+  background-color: transparent;
+}
+.hasSubmenu {
+  font-family: 'Source Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1.1rem;
+
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+/** MEDIA QUERIES **/
+@media only screen and (max-width: 1020px) {
+  .listItem {
+    width: 100%;
+    border-bottom: 1px solid var(--solitude-grey);
+    padding: 0px;
+  }
+  .listItem:hover {
+    background-color: transparent;
+  }
+  .hasSubmenu {
+    width: 100%;
+    text-align: left;
+    padding: 16px 0px;
+  }
+  .noSubmenu {
+    display: inline-block;
+    width: 100%;
+
+    padding: 16px 0px;
+  }
+}

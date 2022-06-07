@@ -1,0 +1,33 @@
+.cardWrapper {
+  display: block;
+  width: 420px;
+  aspect-ratio: 16/9;
+
+  font-size: 1.85rem;
+  line-height: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -.075em;
+  text-transform: uppercase;
+
+  border: 1px solid var(--solitude-grey);
+  border-radius: 4px;
+
+  padding: 16px;
+  margin: 4px;
+}
+
+.cardWrapper::after {
+  content: '↗';
+  display: inline-block;
+  font-size: 2.25rem;
+  font-weight: 600;
+
+  transform: translate(0px, 2px);
+  opacity: 0;
+
+  transition: all 175ms ease-in;
+}
+.cardWrapper:hover::after {
+  transform: translate(6px, -3px);
+  opacity: 1;
+}

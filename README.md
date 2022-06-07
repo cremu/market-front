@@ -1,0 +1,1 @@
+School project project 6: Second hand shop. Next.js, React (front) & Strapi (back). 

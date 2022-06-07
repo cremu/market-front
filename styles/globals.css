@@ -1,0 +1,123 @@
+/** FONTS **/
+@font-face {
+  font-family: 'Source Sans';
+  font-style: normal;
+  font-weight: 200 900;
+  src: url('/fonts/SourceSans-var.otf.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Permanent Marker';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/PermanentMarker-Regular.woff2') format('woff2');
+}
+/** COLOR PALETTE **/
+:root {
+  --notion-red: hsl(4, 70%, 62%);
+  --notion-dark-red: hsl(4, 58%, 55%);
+  --notion-border-red: hsl(9, 49%, 50%);
+  --notion-creme: hsl(16, 73%, 97%);
+  --notion-pink: hsl(9, 70%, 95%);
+  /*--primer-blue: hsl(212, 92%,45%);
+  --primer-clear-blue: hsl(212, 74%, 83%);
+  --notion-super-pink: hsl(2, 79%, 87%);*/
+  --solitude-grey: hsl(207, 20%, 91%);
+  --solitude-grey-clear: hsla(207, 20%, 91%, .45);
+  --notion-grey: hsl(0, 0%, 7%);
+  --notion-light-grey: hsl(60, 0%,40%);
+}
+
+/** GLOBAL STYLES **/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html,
+body, button {
+  font-family: 'Source Sans', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+p {
+  margin: 8px 0px;
+}
+h1, h2, h3, h4, h5, h6 {
+  padding: 8px 0px;
+  font-weight: 700;
+  letter-spacing: -.075em;
+}
+
+/** LINKS & BUTTONS **/
+a.primaryButton, button.primaryButton {
+  display: inline-block;
+
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: -.025rem;
+  color: white;
+  background-color: var(--notion-red);
+  border: 1px solid var(--notion-border-red);
+  border-radius: 3px;
+
+  padding: 6px 18px;
+}
+a.primaryButton:hover, button.primaryButton:hover {
+  color: white;
+  background-color: var(--notion-dark-red);
+
+  transition: all 175ms ease-in;
+}
+a.primaryAccentButton, button.primaryAccentButton {
+  display: inline-block;
+
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: -.025rem;
+  color: var(--notion-red);
+  background-color: var(--notion-creme);
+  border: 1px solid var(--notion-red);
+  border-radius: 3px;
+
+  padding: 6px 18px;
+}
+
+a.primaryAccentButton:hover, button.primaryAccentButton:hover {
+  background-color: var(--notion-pink);
+
+  transition: all 175ms ease-in;
+}
+
+.secondaryLink {
+  font-size: 1.1rem;
+  border-bottom: 1px solid transparent;
+
+}
+.secondaryLink:hover {
+  border-color: var(--notion-light-grey);
+  transition: all 175ms ease-in;
+}
+
+/* CATEGORIES AND PRODUCTS SECTIONS  */
+section.productsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+
+
+  margin: 0px 0px 48px -16px;
+}
+section.categoriesContainer {
+  max-width: 856px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  margin: 64px auto;
+}

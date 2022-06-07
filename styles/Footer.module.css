@@ -1,0 +1,113 @@
+.footer {
+  position: relative;
+  max-width: 1440px;
+
+  border-top: 1px solid var(--solitude-grey);
+
+  padding: 12px 15px;
+  margin: 0px auto;
+}
+.signature {
+  width: 100%;
+
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.5rem;
+
+  z-index: 1;
+
+  margin-top: 0px;
+}
+.social {
+  position: absolute;
+  top: 0px;
+  right: 12px;
+  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  z-index: 2;
+  
+  margin-left: auto;
+}
+.socialLink {
+  position: relative;
+  font-weight: 400;
+  letter-spacing: -.05rem;
+
+  padding: 5px 12px 0px 12px;
+}
+.socialLink::after {
+  content: '↗';
+  display: inline-block;
+  font-size: 1.5rem;
+
+  margin-left: 4px;
+}
+
+.socialLink+.socialLink {
+  border-left: 1px solid var(--solitude-grey);
+}
+/** FACEBOOK **/
+.socialLink.facebook::before {
+  content: '';
+  display: inline-block;
+  width: 98px;
+  height: 35px;
+  z-index: -1;
+  position: absolute;
+  left: 6px;
+  bottom: -2px;
+  background-color: transparent;
+  border-radius: 4px;
+}
+.socialLink.facebook:hover::before {
+  background-color: var(--solitude-grey-clear);
+}
+/** EMAIL **/
+.socialLink.email::before {
+  content: '';
+  display: inline-block;
+  width: 68px;
+  height: 35px;
+  z-index: -1;
+  position: absolute;
+  left: 6px;
+  bottom: -2px;
+  background-color: transparent;
+  border-radius: 4px;
+}
+
+.socialLink.email:hover::before {
+  background-color: var(--solitude-grey-clear);
+}
+
+
+
+/** MEDIA QUERIES **/
+@media only screen and (max-width: 620px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 0px;
+  }
+  .signature {
+    order: 1;
+
+    margin-top: 16px;
+  }
+  .social {
+    position: relative;
+    margin: 0px 0px;
+    order: 0;
+  }
+}
+@media only screen and (max-width: 250px) {
+  .socialLink::after {
+    display: none;
+  }
+}

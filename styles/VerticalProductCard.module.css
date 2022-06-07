@@ -1,0 +1,74 @@
+.productWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+
+  width: 275px;
+  border: 1px solid var(--solitude-grey);
+  border-radius: 4px;
+
+  margin: 16px;
+}
+.imgContainer {
+  position: relative;
+  max-width: 275px;
+  height: 345px;
+}
+.image {
+  border-radius: 4px 4px 0px 0px;
+}
+/******************
+ ** PRODUCT INFO **
+ *****************/
+.info {
+  flex-grow: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  padding: 8px 0px 4px 0px;
+}
+/** 1st ROW **/
+.first {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  border-bottom: 1px solid var(--solitude-grey);
+
+  padding: 0px 12px 2px 12px;
+  margin-bottom: 8px;
+}
+.first p {
+  color: var(--notion-light-grey);
+  font-size: .95rem;
+  font-weight: 500;
+  letter-spacing: -.045rem;
+
+  margin: 0px
+}
+/** 2nd ROW **/
+.name {
+  font-size: 1.35rem;
+  line-height: 1.55rem;
+
+  padding: 6px 12px 6px 12px;
+}
+/** 3rd ROW **/
+.third {
+  border-top: 1px solid var(--solitude-grey);
+
+  padding-top: 4px;
+  margin-top: auto;
+}
+.price {
+  font-size: 1.35rem;
+
+  letter-spacing: -.065rem;
+  text-align: right;
+
+  padding: 0px 16px 0px 16px;
+}
