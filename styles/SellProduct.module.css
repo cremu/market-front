@@ -164,3 +164,25 @@
   padding: 3px 16px !important;
   margin-top: 12px;
 }
+
+
+/** EDIT PAGE **/
+.productControls {
+  margin-top: 12px;
+}
+.largeButton {
+  padding-top: 3px !important;
+  padding-bottom: 3px !important;
+  color: var(--notion-grey) !important;
+  font-weight: 400 !important;
+  background-color: var(--solitude-grey) !important;
+  border-color: var(--notion-light-grey) !important;
+}
+.imgContainer {
+  position: relative;
+  max-width: 137px;
+  height: 173px;
+}
+.image {
+  border-radius: 4px;
+}

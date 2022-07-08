@@ -1,0 +1,16 @@
+.paginationList {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+.paginationList * {
+  margin: 0px 3px 0px 3px;
+}
+.currentPage {
+  color: black;
+  text-decoration: underline;
+  font-weight: 600;
+}
+.paginationLink {
+  color: grey;
+}

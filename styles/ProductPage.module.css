@@ -1,0 +1,22 @@
+.productControls{
+  margin-top: 18px;
+}
+.largeButton {
+  padding-top: 3px !important;
+  padding-bottom: 3px !important;
+  color: var(--notion-grey) !important;
+  font-weight: 400 !important;
+  background-color: var(--solitude-grey) !important;
+  border-color: var(--notion-light-grey) !important;
+}
+.deleteButton {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: -.025rem;
+  color: var(--notion-red);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  margin-left: 8px;
+}

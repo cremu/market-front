@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "headless-pagination": "^0.1.3",
     "next": "12.1.5",
     "qs": "^6.10.3",
     "react": "18.1.0",

@@ -1,22 +1,35 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 import Layout from '@/components/Layout'
 import styles from '@/styles/SellProduct.module.css'
 import { API_URL } from '@/config/index'
+import Modal from '@/components/Modal'
+import ImageUpload from '@/components/ImageUpload'
 
-export default function SellProductPage() {
+export default function EditProductPage({ product }) {
+
   const router = useRouter()
-
   const [values, setValues] = useState({
-    name: '',
-    location: '',
-    zipCode: '',
-    deliveryOption: false,
-    price: '',
-    isNew: false,
-    description: '',
-    category: 4
+    name: product.data.attributes.name,
+    location: product.data.attributes.location,
+    zipCode: product.data.attributes.zipCode,
+    deliveryOption: product.data.attributes.deliveryOption,
+    price: product.data.attributes.price,
+    isNew: product.data.attributes.isNew,
+    description: product.data.attributes.description,
+    category: product.data.attributes.category
   })
+
+    //Get last image from the array of media a Product has
+  let last = 0
+  if(product.data.attributes.media.data !== null) {
+    last = product.data.attributes.media.data.length -1
+  }
+  const [imagePreview, setImagePreview] = useState(
+    product.data.attributes.media.data ? product.data.attributes.media.data[last].attributes.formats.thumbnail.url : null
+  )
+  const [showModal, setShowModal] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value, type } = e.target
@@ -34,8 +47,8 @@ export default function SellProductPage() {
     const newProduct = { data: values }
     console.log(newProduct)
 
-    const res = await fetch(`${API_URL}/api/products`, {
-      method: 'POST',
+    const res = await fetch(`${API_URL}/api/products/${product.data.id}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -49,10 +62,23 @@ export default function SellProductPage() {
       router.push(`/products/${responseProduct.data.attributes.slug}`)
     }
   }
+
+  const imageUploaded = async (e) => {
+    const res = await fetch(`${API_URL}/api/products/${product.data.id}?populate=%2A`)
+    const updatedProduct = await res.json()
+
+    //Get last image from the array of media a Product has
+    let lastImgIndex = 0
+    if(updatedProduct.data.attributes.media.data !== null) {
+      lastImgIndex = updatedProduct.data.attributes.media.data.length -1
+    }
+    setImagePreview(updatedProduct.data.attributes.media.data[lastImgIndex].attributes.formats.thumbnail.url)
+    setShowModal(false)
+  }
  
   return (
     <Layout>
-      <h1>Add a product</h1>
+      <h1>Edit product</h1>
 
         <form className={styles.form} onSubmit={handleSubmit}>
 
@@ -89,9 +115,44 @@ export default function SellProductPage() {
           <label htmlFor='description'>Describe the product and its conditions</label>
           <textarea className={styles.textArea} name='description' id='description' rows='6' value={values.description} onChange={handleInputChange} ></textarea>
 
-          <button className={`primaryButton ${styles.submitButton}`}>Start the sale!</button>
+          <button className={`primaryButton ${styles.submitButton}`}>Update product</button>
         </form>
+
+        <h3>Product Image</h3>
+        {imagePreview ? (
+          <div className={styles.imgContainer}>
+            <Image
+              className={styles.image} 
+              src={imagePreview}
+              priority={true}
+              alt='product image'
+              layout='fill'
+              objectFit='cover'   
+            />
+          </div>
+        ) : (
+          <p>No image uploaded!</p>
+        )}
+        <div className={styles.productControls}>
+          <button className={`${styles.largeButton} primaryAccentButton`} onClick={() => setShowModal(true)}>
+              Set image
+          </button>
+      </div>
+      <Modal show={showModal} onClose={() => setShowModal(false)}>
+        <ImageUpload productId={product.data.id} imageUploaded={imageUploaded} />
+      </Modal>
 
     </Layout>
   )
+}
+
+export async function getServerSideProps({params: {id}}) {
+  const res = await fetch(`${API_URL}/api/products/${id}?populate=%2A`)
+  const product = await res.json()
+
+  return {
+    props: {
+      product
+    }
+  }
 }
