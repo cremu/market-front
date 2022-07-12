@@ -8,7 +8,7 @@ import { API_URL, PAGINATION_LENGTH } from '@/config/index'
 export default function CategoryPage({ category, products, pagination }) {
 
   const slug = category.attributes.slug
-  //Pagination
+  //Product pagination 
   const paginator = new Paginator({
     totalItems: pagination.total,
     initialPage: pagination.page,
@@ -65,14 +65,10 @@ export default function CategoryPage({ category, products, pagination }) {
 // }
 
 export async function getServerSideProps({ params: { slug }, query: { page = 1 }}) {
-  //Pagination indexes
-  //const initial = +page === 1 ? 1 : (+page - 1) * PAGINATION_LENGTH
-
   //Query the collection and store it's id in const: collectionId, and it's total products count in const: productsCount
   const categoryRes = await fetch(`${API_URL}/api/categories?filters[slug]=${slug}&populate[products][populate][1]=products`)
   const category = await categoryRes.json()
   const categoryId = category.data[0].id
-  //const productsCount = category.data[0].attributes.products.data.length
 
   //Query all products and returns those in a particular category
   const productsRes = await fetch(`${API_URL}/api/products?filters[category]=${categoryId}&populate[media][populate][1]=media&pagination[page]=${page}&pagination[pageSize]=${PAGINATION_LENGTH}`)

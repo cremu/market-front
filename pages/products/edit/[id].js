@@ -9,6 +9,8 @@ import ImageUpload from '@/components/ImageUpload'
 
 export default function EditProductPage({ product }) {
 
+  console.log(product)
+
   const router = useRouter()
   const [values, setValues] = useState({
     name: product.data.attributes.name,
@@ -18,10 +20,10 @@ export default function EditProductPage({ product }) {
     price: product.data.attributes.price,
     isNew: product.data.attributes.isNew,
     description: product.data.attributes.description,
-    category: product.data.attributes.category
+    category: product.data.attributes.category.data.id,
   })
 
-    //Get last image from the array of media a Product has
+  //Get last image from the array of media a Product has
   let last = 0
   if(product.data.attributes.media.data !== null) {
     last = product.data.attributes.media.data.length -1
@@ -44,18 +46,17 @@ export default function EditProductPage({ product }) {
     e.preventDefault()
     // [X]TODO: Extra validation
 
-    const newProduct = { data: values }
-    console.log(newProduct)
-
+    const changedProduct = { data: values }
+    console.log(changedProduct)
     const res = await fetch(`${API_URL}/api/products/${product.data.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(newProduct)
+      body: JSON.stringify(changedProduct)
     })
     if(!res.ok) {
-      //console.log('oops! Something went wrong')
+      console.log('oops! Something went wrong')
     } else {
       const responseProduct = await res.json()
       console.log(responseProduct)
@@ -66,6 +67,7 @@ export default function EditProductPage({ product }) {
   const imageUploaded = async (e) => {
     const res = await fetch(`${API_URL}/api/products/${product.data.id}?populate=%2A`)
     const updatedProduct = await res.json()
+    console.log(updatedProduct)
 
     //Get last image from the array of media a Product has
     let lastImgIndex = 0
