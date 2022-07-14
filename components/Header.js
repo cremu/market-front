@@ -1,17 +1,20 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import styles from '@/styles/Header.module.css'
 import { menuItems } from '@/config/navigation'
 import MenuItem from '@/components/MenuItem'
 import SearchForm from '@/components/SearchForm'
 import IconMenuOpen from '../public/IconMenuOpen.svg'
 import IconMenuClose from '../public/IconMenuClose.svg'
+import AuthContext from '@/context/AuthContext'
 
 export default function Header() {
 
   const [mobileMenuState, setMobileMenuState] = useState(false)
   const toggleMobileMenu = () => setMobileMenuState(!mobileMenuState)
+
+  const { user, logout } = useContext(AuthContext)
 
   return (
     <header className={styles.header}>
@@ -41,12 +44,22 @@ export default function Header() {
       </div>
       
       <div className={`${styles.profileWrapper} ${mobileMenuState ? styles.show : ''}`}>
-        <Link href='/'>
-          <a className={`primaryButton ${styles.largeButton}`}>Log in</a>
-        </Link>
-        <Link href='/products/sell'>
-          <a className={`primaryAccentButton ${styles.largeButton}`}>Add Product</a>
-        </Link>
+        {user ? 
+          <>
+            <Link href='/account/dashboard'>
+              <a>Dashboard</a>
+            </Link>            
+            <Link href='/products/sell'>
+              <a className={`primaryAccentButton ${styles.largeButton}`}>Add Product</a>
+            </Link>
+            <button onClick={() => logout()}>Log Out</button>
+          </> : 
+          <>
+            <Link href='/account/login'>
+              <a className={`primaryButton ${styles.largeButton}`}>Log in</a>
+            </Link>
+          </>
+        }
       </div>       
     </header>
   )

@@ -148,9 +148,11 @@ export default function EditProductPage({ product }) {
   )
 }
 
-export async function getServerSideProps({params: {id}}) {
+export async function getServerSideProps({params: {id}, req}) {
   const res = await fetch(`${API_URL}/api/products/${id}?populate=%2A`)
   const product = await res.json()
+
+  console.log(req.headers.cookie)
 
   return {
     props: {
